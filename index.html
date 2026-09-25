@@ -19,7 +19,7 @@
   <div class="tools">
     <span class="conn" id="conn" role="status"><i></i><b>Connecting…</b></span>
     <button type="button" id="sound" class="tbtn" aria-pressed="false">Sound off</button>
-    <button type="button" id="lock" class="tbtn ghost">Lock</button>
+    <button type="button" id="lock" class="tbtn ghost">Sign out</button>
   </div>
 </header>
 
@@ -39,16 +39,18 @@
   <form class="gate-card" id="gate-form">
     <div class="brand big">Bomb<em>o</em>n</div>
     <h1>Orders board</h1>
-    <p id="gate-msg">Enter the staff key. You'll find it in the <b>Settings</b> tab of the Bombon orders Google Sheet.</p>
-    <label for="key">Staff key</label>
-    <input id="key" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" required>
-    <button type="submit" id="gate-go">Open the board</button>
+    <p id="gate-msg">Staff sign in to see and update table orders.</p>
+    <label for="user">Username</label>
+    <input id="user" autocomplete="username" autocapitalize="none" spellcheck="false" value="staff" required>
+    <label for="pass">Password</label>
+    <input id="pass" type="password" autocomplete="current-password" required>
+    <button type="submit" id="gate-go">Sign in</button>
     <p class="err" id="gate-err" role="alert" hidden></p>
   </form>
 </div>
 
 <p id="live" class="sr" aria-live="assertive"></p>
 <script src="config.js"></script>
-<script src="board.js"></script>
+<script type="module" src="board.js"></script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+[debug] [2026-09-25T21:57:16.666Z] ----------------------------------------------------------------------
+[debug] [2026-09-25T21:57:16.670Z] Command:       /Users/rohanjohnhem/.local/bin/firebase /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy --help
+[debug] [2026-09-25T21:57:16.670Z] CLI Version:   15.31.0
+[debug] [2026-09-25T21:57:16.670Z] Platform:      darwin
+[debug] [2026-09-25T21:57:16.671Z] Node Version:  v20.18.2
+[debug] [2026-09-25T21:57:16.671Z] Detected Agent: claude-code_2-1-282_agent
+[debug] [2026-09-25T21:57:16.672Z] Time:          Sat Sep 26 2026 03:27:16 GMT+0530 (India Standard Time)
+[debug] [2026-09-25T21:57:16.672Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-09-25T21:57:16.737Z] Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/stream-chain/src/node/index.js from /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/frameworks/next/index.js not supported.
+Instead change the require of /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/stream-chain/src/node/index.js in /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/frameworks/next/index.js to a dynamic import() which is available in all CommonJS modules.
+    at Module.require (pkg/prelude/bootstrap.js:1855:31)
+    at Object.<anonymous> (/Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:18:24)
+    at Module._compile (pkg/prelude/bootstrap.js:1898:32)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-09-25T21:57:17.920Z] ----------------------------------------------------------------------
+[debug] [2026-09-25T21:57:17.923Z] Command:       /Users/rohanjohnhem/.local/bin/firebase /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase help
+[debug] [2026-09-25T21:57:17.924Z] CLI Version:   15.31.0
+[debug] [2026-09-25T21:57:17.924Z] Platform:      darwin
+[debug] [2026-09-25T21:57:17.924Z] Node Version:  v20.18.2
+[debug] [2026-09-25T21:57:17.925Z] Detected Agent: claude-code_2-1-282_agent
+[debug] [2026-09-25T21:57:17.925Z] Time:          Sat Sep 26 2026 03:27:17 GMT+0530 (India Standard Time)
+[debug] [2026-09-25T21:57:17.926Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-09-25T21:57:17.954Z] Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/stream-chain/src/node/index.js from /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/commands/auth-import.js not supported.
+Instead change the require of index.js in /Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/commands/auth-import.js to a dynamic import() which is available in all CommonJS modules.
+    at Module.require (pkg/prelude/bootstrap.js:1855:31)
+    at Object.<anonymous> (/Users/rohanjohnhem/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/commands/auth-import.js:5:24)
+    at Module._compile (pkg/prelude/bootstrap.js:1898:32)
+[error] 
+[error] Error: An unexpected error has occurred.
