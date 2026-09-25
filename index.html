@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2B1D14">
+<title>Bombon Orders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,50..100&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="board.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">Bomb<em>o</em>n <span>Orders</span></div>
+  <div class="stats" id="stats" aria-live="off"></div>
+  <div class="tools">
+    <span class="conn" id="conn" role="status"><i></i><b>Connecting…</b></span>
+    <button type="button" id="sound" class="tbtn" aria-pressed="false">Sound off</button>
+    <button type="button" id="lock" class="tbtn ghost">Lock</button>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs" role="tablist" aria-label="Order status">
+  <button role="tab" data-col="New" aria-selected="true">New <span></span></button>
+  <button role="tab" data-col="Preparing" aria-selected="false">Preparing <span></span></button>
+  <button role="tab" data-col="Served" aria-selected="false">Served <span></span></button>
+</nav>
+
+<main class="board" id="board">
+  <section class="col" data-col="New"><h2>New <span></span></h2><div class="cards"></div></section>
+  <section class="col" data-col="Preparing"><h2>Preparing <span></span></h2><div class="cards"></div></section>
+  <section class="col" data-col="Served"><h2>Served <span></span><small>last 3 hours</small></h2><div class="cards"></div></section>
+</main>
+
+<div class="gate" id="gate" hidden>
+  <form class="gate-card" id="gate-form">
+    <div class="brand big">Bomb<em>o</em>n</div>
+    <h1>Orders board</h1>
+    <p id="gate-msg">Enter the staff key. You'll find it in the <b>Settings</b> tab of the Bombon orders Google Sheet.</p>
+    <label for="key">Staff key</label>
+    <input id="key" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+    <button type="submit" id="gate-go">Open the board</button>
+    <p class="err" id="gate-err" role="alert" hidden></p>
+  </form>
+</div>
+
+<p id="live" class="sr" aria-live="assertive"></p>
+<script src="config.js"></script>
+<script src="board.js"></script>
+</body>
+</html>
