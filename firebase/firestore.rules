@@ -1,0 +1,50 @@
+rules_version = '2';
+
+// Security rules for Bombon orders (Firebase project bombon-orders-ucwmp).
+// Orders live at restaurants/bombon/orders/{orderId}.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Staff logins that may see and update orders. To add someone, add their email here and create the
+    // user under Firebase console > Authentication > Users. The board turns a username like "staff"
+    // into "staff@bombon.staff".
+    function isStaff() {
+      return request.auth != null && request.auth.token.email in ['staff@bombon.staff'];
+    }
+
+    match /restaurants/bombon/orders/{orderId} {
+      // Guests: place a new order. Only well-formed orders get in.
+      allow create: if request.resource.data.keys().hasOnly(['ref', 'table', 'name', 'note', 'items', 'qty', 'subtotal', 'service', 'total', 'status', 'placedAt'])
+        && request.resource.data.keys().hasAll(['ref', 'table', 'name', 'note', 'items', 'qty', 'subtotal', 'service', 'total', 'status', 'placedAt'])
+        && request.resource.data.ref is string && request.resource.data.ref.matches('^T[0-9]{1,3}-[0-9]{4}-[A-Z0-9]{3}$')
+        && request.resource.data.table is int && request.resource.data.table >= 1 && request.resource.data.table <= 40
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.note is string && request.resource.data.note.size() <= 300
+        && request.resource.data.items is list && request.resource.data.items.size() > 0 && request.resource.data.items.size() <= 60
+        && request.resource.data.qty is int && request.resource.data.qty > 0 && request.resource.data.qty <= 400
+        && request.resource.data.subtotal is number && request.resource.data.subtotal >= 0 && request.resource.data.subtotal < 500000
+        && request.resource.data['service'] is number && request.resource.data.total is number
+        && request.resource.data.status == 'new'
+        && request.resource.data.placedAt == request.time;
+
+      // Guests: re-read their own order after a slow connection (ids are random 20-character codes,
+      // so only the phone that placed it knows it). Listing orders is staff only.
+      allow get: if true;
+      allow list: if isStaff();
+
+      // Staff: move an order along or cancel it. Nothing else about an order can change.
+      allow update: if isStaff()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'statusAt', 'statusBy'])
+        && request.resource.data.status in ['new', 'preparing', 'served', 'cancelled']
+        && request.resource.data.statusAt == request.time
+        && request.resource.data.statusBy == request.auth.token.email;
+
+      allow delete: if false;
+    }
+
+    // Everything else is closed.
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}
